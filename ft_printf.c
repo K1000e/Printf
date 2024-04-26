@@ -6,7 +6,7 @@
 /*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:52:35 by cgorin            #+#    #+#             */
-/*   Updated: 2024/04/25 18:13:26 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/04/26 11:48:28 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ If the space and + flags both appear, the space flag is ignored.
 */
 
 
-#include <unistd.h>
+/* #include <unistd.h>
 #include <stdio.h> 
 
 
@@ -79,10 +79,18 @@ int	ft_strlen(char const *s)
 void	ft_putstr_fd(char *s, int fd)
 {
 	write(fd, s, ft_strlen(s));
-}
+} */
+
+
+/****************************/
+/*							*/
+/*			START			*/
+/*							*/
+/****************************/
+
 #include <stdarg.h>
 
-static void	ft_putnbr_u(unsigned int n, int fd)
+/* static void	ft_putnbr_unsigned(unsigned int n, int fd)
 {
 	if (n < 0)
 	{
@@ -96,17 +104,17 @@ static void	ft_putnbr_u(unsigned int n, int fd)
 		ft_putnbr_fd(n / 10, 1);
 		ft_putnbr_fd(n % 10, 1);
 	}
-}
+} */
 
-static int	ft_print_i_d_u(char *format, int number, int i)
+/* static int	ft_print_i_d_u(char *format, int number, int i)
 {
 	if (format[i] == 'i' || format[i] == 'd')
 		ft_putnbr_fd(number, 1);
 	if (format[i] == 'u')
-		ft_putnbr_u(number, 1);
+		ft_putnbr_unsigned(number, 1);
 	i++;
 	return (i);
-}
+} */
 
 static int	ft_print_c_s(int i, char *format, ...)
 {
@@ -123,7 +131,7 @@ static int	ft_print_c_s(int i, char *format, ...)
 	return (i);
 }
 
-void	ft_putnbr_base_fd(int n, char *base, int base_len, int fd)
+/* void	ft_putnbr_base_fd(int n, char *base, int base_len, int fd)
 {
 	if (n == -2147483648)
 	{
@@ -139,9 +147,9 @@ void	ft_putnbr_base_fd(int n, char *base, int base_len, int fd)
 	if (n >= 10)
 		ft_putnbr_base_fd(n / base_len, base, base_len, fd);
 	ft_putchar_fd((base[n % base_len]), fd);
-}
+} */
 
-static void	ft_put_x_p(int n, char format)
+/* static void	ft_put_x_p(int n, char format)
 {
 	if (format == 'p')
 		ft_putstr_fd("0x", 1);
@@ -149,16 +157,14 @@ static void	ft_put_x_p(int n, char format)
 		ft_putnbr_base_fd(n, "0123456789ABCDEF", 16, 1);
 	else if (format == 'x' || format == 'p')
 		ft_putnbr_base_fd(n, "0123456789abcdef", 16, 1);
-}
+} */
 
-int	ft_printf(char *string, ...)
+int	ft_printf_format(char *string, va_list ap)
 {
-	va_list ap;
 	int i;
-	va_start(ap, string);
-
-	i = 0;
-	while(string[i])
+	
+	i = -1;
+	while(string[++i])
 	{
 		if (string[i] == '%')
 		{
@@ -178,13 +184,23 @@ int	ft_printf(char *string, ...)
 		}
 		else
 			ft_putchar_fd(string[i], 1);
-		i++;
 	}
-	va_end(ap);
-	return i;
+	return (i);
 }
 
-#include <stdlib.h>
+int	ft_printf(char *string, ...)
+{
+	va_list ap;
+	va_start(ap, string);
+	int i;
+
+	i = ft_printf_format(string, ap);
+	
+	va_end(ap);
+	return (i);
+}
+
+/* #include <stdlib.h>
 int main()
 {
 	int *p = malloc (sizeof (int));
@@ -195,5 +211,5 @@ int main()
 	ft_printf("ft_printf 2 :\n%i\n%u\n", +56, 2147483647);
 	printf("printf 2 : &p = %p\n", p);
 	ft_printf("ft_printf 2 : &p = %p\n", p);
-}
+} */
 
