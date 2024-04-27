@@ -6,11 +6,11 @@
 /*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:14:28 by cgorin            #+#    #+#             */
-/*   Updated: 2024/04/24 17:39:52 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/04/27 16:27:44 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../include/printf.h"
 
 size_t	ft_strlen(char const *s)
 {

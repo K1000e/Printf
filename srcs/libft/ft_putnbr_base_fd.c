@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_base_fd.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/31 19:13:09 by cgorin            #+#    #+#             */
-/*   Updated: 2024/04/24 17:39:52 by cgorin           ###   ########.fr       */
+/*   Created: 2024/04/26 11:41:59 by cgorin            #+#    #+#             */
+/*   Updated: 2024/04/27 16:27:44 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "../../include/printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putnbr_base_fd(int n, char *base, int base_len, int fd)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	if (n == -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+	}
+	if (n >= 10)
+		ft_putnbr_base_fd(n / base_len, base, base_len, fd);
+	ft_putchar_fd((base[n % base_len]), fd);
 }
