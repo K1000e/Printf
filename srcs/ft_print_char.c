@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/31 19:14:28 by cgorin            #+#    #+#             */
-/*   Updated: 2024/04/27 16:27:44 by cgorin           ###   ########.fr       */
+/*   Created: 2024/04/29 22:47:19 by cgorin            #+#    #+#             */
+/*   Updated: 2024/05/05 22:17:12 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/printf.h"
+#include "../include/ft_printf.h"
 
-size_t	ft_strlen(char const *s)
+int	ft_print_char(char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	write(1, &c, 1);
+	return 1;
 }

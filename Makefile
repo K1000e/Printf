@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+         #
+#    By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/07 10:27:08 by cgorin            #+#    #+#              #
-#    Updated: 2024/04/27 16:32:38 by cgorin           ###   ########.fr        #
+#    Updated: 2024/05/06 00:34:48 by cgorin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,23 +17,31 @@ AR 			:= ar
 ARFLAGS 	:= -r -c -s
 
 NAME 		:= libftprintf.a
-NAME_LIBFT 	:= libft.a
+#NAME_LIBFT := libft.a
 
 OBJ_DIR	:= objs
 SRC_DIR := srcs
 SRCS 	:= 						\
-	printf/ft_printf.c 			\
-	printf/ft_printf_type.c 	\
-	libft/ft_putstr_fd.c 		\
-	libft/ft_putchar_fd.c 		\
-	libft/ft_putnbr_base_fd.c 	\
-	libft/ft_strlen.c 			\
+	ft_printf.c 			\
+	ft_print_char.c \
+	ft_print_i_d.c \
+	ft_print_x.c \
+	ft_print_s.c \
+	ft_print_p.c \
+	ft_strlen.c 			\
+	ft_putnbr_fd.c 		\
+	ft_putchar_fd.c 		\
+	ft_putnbr_base.c 	\
+	ft_strchr.c \
+#	ft_itoa.c 			\
+	ft_printf_type.c 	\
+	ft_putstr_fd.c 		\
 
 SRCS 	:= $(SRCS:%=$(SRC_DIR)/%)
-OBJ = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJ 	:= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-HDRS    = libft.h
-DIR_DUP     = mkdir -p $(@D)
+HDRS    := libft.h
+#DIR_DUP := mkdir -p $(@D)
 
 RM = rm -f
 
@@ -48,7 +56,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean: 
 	$(RM) $(OBJ) 
-	$(RM) -r $(OBJ_DIR)
+# $(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

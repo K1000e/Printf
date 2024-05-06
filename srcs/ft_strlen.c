@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/31 19:13:09 by cgorin            #+#    #+#             */
-/*   Updated: 2024/04/27 16:27:44 by cgorin           ###   ########.fr       */
+/*   Created: 2024/03/31 19:14:28 by cgorin            #+#    #+#             */
+/*   Updated: 2024/05/05 22:17:12 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/printf.h"
+#include "../include/ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlen(char const *s)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
