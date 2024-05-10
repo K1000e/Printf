@@ -6,7 +6,7 @@
 #    By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/07 10:27:08 by cgorin            #+#    #+#              #
-#    Updated: 2024/05/06 00:34:48 by cgorin           ###   ########.fr        #
+#    Updated: 2024/05/07 09:46:14 by cgorin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS 	:= 						\
 	ft_print_x.c \
 	ft_print_s.c \
 	ft_print_p.c \
+	ft_print_u.c \
 	ft_strlen.c 			\
 	ft_putnbr_fd.c 		\
 	ft_putchar_fd.c 		\

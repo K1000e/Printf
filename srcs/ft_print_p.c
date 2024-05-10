@@ -6,34 +6,30 @@
 /*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:12:53 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/06 00:38:48 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/05/11 00:18:06 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static int	num_len_hexa(unsigned long n)
+static int	ft_print_adress(const unsigned long n)
 {
-	int num_len;
-
-	num_len = 0;
-	if (n == 0)
-	    return (1);
-	while (n != 0)
-	{
-        num_len++;
-        n /= 16;
-    }
-	return (num_len);
+	if (n / 16)
+		return (ft_print_adress(n / 16) + ft_print_adress(n % 16));
+	else if (!(n / 10))
+		ft_print_char(n + '0');
+	else
+		ft_print_char((char) n - 10 + 'a');
+	return (1);
 }
 
 int	ft_print_p(void *ptr)
 {
-	unsigned long n;
-	
+	unsigned long	n;
+	int				i;
+
 	n = (unsigned long)ptr;
-	ft_print_s("0x");
-	ft_putnbr_base(n, "0123456789abcdef", 16);
-	//i += get_adress(n, base);
-	return (num_len_hexa(n) + 2);
+	i = 0;
+	i += ft_print_s("0x");
+	return (ft_print_adress((unsigned long) n) + i);
 }

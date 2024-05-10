@@ -6,7 +6,7 @@
 /*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 22:46:44 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/05 22:17:12 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/05/10 23:44:40 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_print_s(char *s)
 	{
 		ft_print_s("(null)");
 		return (6);
-	} 
+	}
 	write(1, s, ft_strlen(s));
 	return (ft_strlen(s));
 }

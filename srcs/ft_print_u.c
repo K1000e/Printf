@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_print_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 11:41:59 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/11 00:17:49 by cgorin           ###   ########.fr       */
+/*   Created: 2024/03/31 19:12:53 by cgorin            #+#    #+#             */
+/*   Updated: 2024/05/10 23:50:28 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_putnbr_base(unsigned int n, char *base, int base_len)
+int	ft_print_u(unsigned int number)
 {
-	int	i;
+	int		i;
+	char	*base;
 
 	i = 0;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', 1);
-		n = -n;
-	}
-	if (n >= (unsigned int)base_len)
-		i += ft_putnbr_base(n / base_len, base, base_len);
-	i += ft_print_char((base[n % base_len]));
+	base = "0123456789";
+	if (number >= 10)
+		i += ft_print_u(number / 10);
+	i += ft_print_char(*(base + (number % 10)));
 	return (i);
 }

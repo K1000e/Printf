@@ -6,7 +6,7 @@
 /*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 22:48:06 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/05 22:45:06 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/05/10 23:49:44 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	nbrlen(int n)
 {
-	int		len;
+	int	len;
 
 	len = 0;
 	if (n < 1)
@@ -27,12 +27,11 @@ static int	nbrlen(int n)
 	return (len);
 }
 
-
 int	ft_print_i_d(int number)
 {
-	int i;
+	int	i;
 
 	i = nbrlen(number);
 	ft_putnbr_fd(number, 1);
-	return i;
+	return (i);
 }
