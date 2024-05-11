@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_p.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 19:12:53 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/11 00:18:06 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/05/11 16:30:28 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	ft_print_p(void *ptr)
 	int				i;
 
 	n = (unsigned long)ptr;
+	if (!n)
+	    return (ft_print_s("(nil)"));
 	i = 0;
 	i += ft_print_s("0x");
 	return (ft_print_adress((unsigned long) n) + i);

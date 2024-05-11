@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 23:52:35 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/10 23:48:59 by cgorin           ###   ########.fr       */
+/*   Updated: 2024/05/11 17:12:33 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,25 @@ static int	ft_printf_format(const char *format, va_list ap)
 	int	len;
 
 	len = 0;
-	if (*format == 'i' || *format == 'd')
-		return (ft_print_i_d(va_arg(ap, int)));
-	else if (*format == 'c')
-		return (ft_print_char(va_arg(ap, int)));
-	else if (*format == 's')
-		return (ft_print_s(va_arg(ap, char *)));
-	else if (*format == 'x' || *format == 'X')
-		return (ft_print_x(va_arg(ap, unsigned int), *format));
-	else if (*format == 'p')
-		return (ft_print_p(va_arg(ap, void *)));
-	else if (*format == '%')
-		return (ft_print_char(*format));
-	else if (*format == 'u')
-		return (ft_print_u(va_arg(ap, unsigned int)));
+	while (*format)
+	{
+		if (*format == '%' && format++ && ft_strchr("cspdiuxX%", *(format)))
+		{
+			if (*format == 'i' || *format == 'd' || *format == 'c')
+				len += (ft_print_i_d_c(va_arg(ap, int), *format));
+			else if (*format == 's')
+				len += (ft_print_s(va_arg(ap, char *)));
+			else if (*format == 'x' || *format == 'X' || *format == 'u')
+				len += (ft_print_u_x(va_arg(ap, unsigned int), *format));
+			else if (*format == 'p')
+				len += (ft_print_p(va_arg(ap, void *)));
+			else if (*format == '%')
+				len += (ft_print_char(*format));
+		}
+		else
+			len += (ft_print_char(*format));
+		format++;
+	}
 	return (len);
 }
 
@@ -41,65 +46,7 @@ int	ft_printf(const char *format, ...)
 
 	va_start(ap, format);
 	len = 0;
-	while (*format)
-	{
-		if (*format == '%' && ft_strchr("cspdiuxX%", *(format + 1)))
-		{
-			format++;
-			if (ft_strchr("cspdiuxX", *format))
-			{
-				len += ft_printf_format(format, ap);
-				va_arg(ap, void *);
-			}
-			else if (*format == '%')
-				len += (ft_print_char('%'));
-		}
-		else
-			len += (ft_print_char(*format));
-		format++;
-	}
+	len = ft_printf_format(format, ap);
 	va_end(ap);
 	return (len);
 }
-/* #include <stdio.h>
-
-int main(void)
-{
-	int i;
-	int v=0;
-	int *ptr;
-
-	ptr = &v;
-	i = ft_printf("Minemine: %d\n", 42);
-		ft_printf("%i\n", i);
-	i = printf("Original : %d\n", 42);
-		printf("%i\n", i);
-    i = ft_printf("Minemine : %s\n", "42");
-		ft_printf("%i\n", i);
-	i = printf("Original : %s\n", "42");
-		ft_printf("%i\n", i);
-    i = ft_printf("Minemine : %c\n", '4');
-		ft_printf("%i\n", i);
-	i = printf("Original : %c\n", '4');
-		ft_printf("%i\n", i);
-    i = ft_printf("Minemine : %s\n", "42");
-		ft_printf("%i\n", i);
-	i = printf("Original : %s\n", "42");
-		ft_printf("%i\n", i);
-	i = ft_printf("Minemine : %x\n", 42);
-		ft_printf("%i\n", i);
-	i = printf("Original : %x\n", 42);
-		ft_printf("%i\n", i);
-	i = ft_printf("Minemine : %X\n", 42);
-		ft_printf("%i\n", i);
-	i = printf("Original : %X\n", 42);
-		ft_printf("%i\n", i);
-	i = ft_printf("Minemine : %p\n", ptr);
-		ft_printf("%i\n", i);
-	i = printf("Original : %p\n", ptr);
-		ft_printf("%i\n", i);
-	i = ft_printf("Minemine : %z\n");	
-		ft_printf("%i\n", i);
-	i = printf("Original : %z\n");	
-		ft_printf("%i\n", i);
-} */

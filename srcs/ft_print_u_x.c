@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_print_u_x.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cgorin <cgorin@student.42nice.fr>          +#+  +:+       +#+        */
+/*   By: cgorin <cgorin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 11:41:59 by cgorin            #+#    #+#             */
-/*   Updated: 2024/05/11 00:17:49 by cgorin           ###   ########.fr       */
+/*   Created: 2024/04/26 11:47:32 by cgorin            #+#    #+#             */
+/*   Updated: 2024/05/11 16:32:12 by cgorin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int	ft_putnbr_base(unsigned int n, char *base, int base_len)
+int	ft_print_u_x(unsigned int n, char format)
 {
 	int	i;
 
 	i = 0;
-	if (n < 0)
-	{
-		ft_putchar_fd('-', 1);
-		n = -n;
-	}
-	if (n >= (unsigned int)base_len)
-		i += ft_putnbr_base(n / base_len, base, base_len);
-	i += ft_print_char((base[n % base_len]));
+	if (format == 'X')
+		i = ft_putnbr_base(n, "0123456789ABCDEF", 16);
+	else if (format == 'x')
+		i = ft_putnbr_base(n, "0123456789abcdef", 16);
+	else if (format == 'u')
+	    i = ft_putnbr_base(n, "0123456789", 10);
 	return (i);
 }
